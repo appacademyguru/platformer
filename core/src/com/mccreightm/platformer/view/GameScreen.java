@@ -10,15 +10,19 @@ public class GameScreen implements Screen{
     public TiledMap map;
     public OrthogonalTiledMapRenderer renderer;
     public OrthographicCamera camera;
-//initializes other thingies
+//constructor
     public GameScreen() {
+        //loads map
         map = new TmxMapLoader().load("map/level01.tmx");
+        //renders map
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);
+        //sets camera dimensions
         camera = new OrthographicCamera(14f, 14f);
     }
 //renders the thingy
     @Override
     public void render(float delta) {
+        //sets the camera view and updates it constantly
         camera.update();
         renderer.setView(camera);
         renderer.render();
