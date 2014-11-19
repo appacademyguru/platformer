@@ -18,6 +18,8 @@ public class GameScreen implements Screen{
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);
         //sets camera dimensions
         camera = new OrthographicCamera(14f, 14f);
+        //sets the camera position to the view width and height divided by two so that the view is aligned to the bottom
+        camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f);
     }
 //renders the thingy
     @Override
