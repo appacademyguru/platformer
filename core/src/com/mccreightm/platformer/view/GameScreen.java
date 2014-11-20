@@ -1,5 +1,6 @@
 package com.mccreightm.platformer.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -16,8 +17,11 @@ public class GameScreen implements Screen{
         map = new TmxMapLoader().load("map/level01.tmx");
         //renders map
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);
-        //sets camera dimensions
-        camera = new OrthographicCamera(14f, 14f);
+        //get the width and height of the window
+        float width = Gdx.graphics.getWidth();
+        float height = Gdx.graphics.getHeight();
+        //sets camera dimensions to maintain aspect ration
+        camera = new OrthographicCamera(14f, 14f * (height / width));
         //sets the camera position to the view width and height divided by two so that the view is aligned to the bottom
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f);
     }
