@@ -2,6 +2,7 @@ package com.mccreightm.platformer.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -28,6 +29,9 @@ public class GameScreen implements Screen{
 //renders the thingy
     @Override
     public void render(float delta) {
+        //sets color of the clear
+        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         //sets the camera view and updates it constantly
         camera.update();
         renderer.setView(camera);
@@ -36,7 +40,9 @@ public class GameScreen implements Screen{
 
     @Override
     public void resize(int width, int height) {
-
+        //modify camera
+        camera.viewportWidth = 14f;
+        camera.viewportHeight = 14f * height/width;
     }
 
     @Override
