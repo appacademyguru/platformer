@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -15,7 +16,7 @@ public class GameScreen implements Screen{
     public OrthogonalTiledMapRenderer renderer;
     public OrthographicCamera camera;
 
-    public SpriteBatch spriteBatch;
+    public Batch spriteBatch;
     public Player player;
 
 //constructor
@@ -33,7 +34,7 @@ public class GameScreen implements Screen{
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f);
 
         //create new spritebatch object: groups sprite sheets and textures so they can be drawn efficiently
-        spriteBatch = new SpriteBatch();
+        spriteBatch = renderer.getSpriteBatch();
         //create new player object
         player = new Player();
     }
@@ -42,7 +43,7 @@ public class GameScreen implements Screen{
     public void render(float delta) {
       //background color
         //sets color of the clear
-        Gdx.gl.glClearColor(1f, 1f, 1f, 1f);
+        Gdx.gl.glClearColor(0.56f, 0.66f, 0.66f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
       //background tile layer
         //sets the camera view and updates it constantly
@@ -50,6 +51,7 @@ public class GameScreen implements Screen{
         renderer.setView(camera);
         renderer.render();
       //character layer
+        player.update(delta);
         //get ready to begin drawing
         spriteBatch.begin();
         //draw the player on the screen using the spriteBatch object
@@ -63,6 +65,8 @@ public class GameScreen implements Screen{
         //modify window size to maintain aspect ratio
         camera.viewportWidth = 14f;
         camera.viewportHeight = 14f * height/width;
+        camera.update();
+        //get ready to begin drawing
     }
 
     @Override

@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
+import java.sql.Time;
+
 public class Player {
     public Vector2 position;
     public Texture spriteSheet;
@@ -13,7 +15,7 @@ public class Player {
 
     public Player() {
         //set sprite init position and connect spritesheet
-        position = new Vector2(0,0);
+        position = new Vector2(0,4);
         spriteSheet = new Texture(Gdx.files.internal("img/aliens.png"));
         //splits sprite sheet into sprites and stores it in 2d array
         TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, 70, 100);
@@ -39,10 +41,10 @@ public class Player {
     //draw character on screen
     public void draw(Batch spriteBatch){
         //draw sprite on screen
-        spriteBatch.draw(spriteFrames[44], 0, 0, 70, 100);
+        spriteBatch.draw(spriteFrames[44], position.x, position.y, 70 * (1/70f), 100 * (1/70f));
     }
     //update characteristics of character
     public void update(float deltaTime){
-
+        position.x += deltaTime;
     }
 }
