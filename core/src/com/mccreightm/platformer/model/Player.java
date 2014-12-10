@@ -11,40 +11,21 @@ import java.sql.Time;
 
 public class Player {
     public Vector2 position;
-    public Texture spriteSheet;
-    public TextureRegion[] spriteFrames;
+    public Animation animation;
+    public Spritesheet spriteSheet;
 
-    public Animation animation; //stores one animation
+    public int width;
+    public int height;
+
     private float stateTime;
 
     public Player() {
         //set sprite init position and connect spritesheet
         position = new Vector2(0,4);
-        spriteSheet = new Texture(Gdx.files.internal("img/aliens.png"));
-        //splits sprite sheet into sprites and stores it in 2d array
-        TextureRegion[][] spriteSheetFrames = TextureRegion.split(spriteSheet, 70, 100);
-        //counts the amount of aliens in spritesheet
-        int counter = 0;
-        for(int row = 0; row < spriteSheetFrames.length; row++){
-            for(int column = 0; column < spriteSheetFrames[row].length; column++){
-                counter++;
-            }
-        }
-
-        //assigns counter number of spaces to spriteFrames
-        spriteFrames = new TextureRegion[counter];
-        counter = 0;//reset counter
-        for(TextureRegion[] row : spriteSheetFrames){//each row is stored in variable row
-            for(TextureRegion sprite : row){//stores the alien in sprite
-                spriteFrames[counter++] = sprite;//stores each alien in spriteFrames and assigns it an index
-            }
-
-        }
-
-        TextureRegion[] animationFrames = new TextureRegion[2];//create new texture region array to store animation frames
-        animationFrames[0] = spriteFrames[45]; //stores sprite 51 in animationFrames
-        animationFrames[1] = spriteFrames[46]; //stores sprite 52 in animationFrames
-        animation = new Animation(0.3f, animationFrames);//create new animation
+        width = 70;
+        height = 100;
+        spriteSheet = new Spritesheet("img/aliens.png", width, height);//create spriteSheet object
+        animation = spriteSheet.createAnimation();
         stateTime = 0f; //initialize stateTime
 
     }
