@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Spritesheet {//class to handle everything to do with spritesheets
     public Texture spriteSheet;
     public TextureRegion[] spriteFrames;
-    public Animation animation; //stores one animation
 
     public Spritesheet(String pathToFile, int width, int height) {
         spriteSheet = new Texture(Gdx.files.internal(pathToFile));
@@ -33,11 +32,14 @@ public class Spritesheet {//class to handle everything to do with spritesheets
         }
     }
 
-    public Animation createAnimation(){//function to animate things
+    public Animation createAnimation(int startFrame, int lastFrame, float animationSpeed){//function to animate things
+        int counter = (lastFrame + 1) - startFrame;
         TextureRegion[] animationFrames = new TextureRegion[2];//create new texture region array to store animation frames
-        animationFrames[0] = spriteFrames[45]; //stores sprite 51 in animationFrames
-        animationFrames[1] = spriteFrames[46]; //stores sprite 52 in animationFrames
-        animation = new Animation(0.3f, animationFrames);//create new animation
-        return animation;
+
+        for(int index = lastFrame; index >= startFrame; index--){
+            animationFrames[--counter] = spriteFrames[index];//create the animation frames
+        }
+
+        return new Animation(animationSpeed, animationFrames);//create new animation
     }
 }

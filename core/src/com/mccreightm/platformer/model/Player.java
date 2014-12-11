@@ -25,8 +25,9 @@ public class Player {
         width = 70;
         height = 100;
         spriteSheet = new Spritesheet("img/aliens.png", width, height);//create spriteSheet object
-        animation = spriteSheet.createAnimation();
+        animation = spriteSheet.createAnimation(45, 46, 0.3f);
         stateTime = 0f; //initialize stateTime
+
 
     }
     //draw character on screen
