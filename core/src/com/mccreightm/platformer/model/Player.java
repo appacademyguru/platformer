@@ -12,6 +12,7 @@ import java.sql.Time;
 public class Player {
     public Vector2 position;
     public Animation animation;
+    public Animation animation2;
     public Spritesheet spriteSheet;
 
     public int width;
@@ -21,11 +22,12 @@ public class Player {
 
     public Player() {
         //set sprite init position and connect spritesheet
-        position = new Vector2(0,4);
+        position = new Vector2(14,4);
         width = 70;
         height = 100;
         spriteSheet = new Spritesheet("img/aliens.png", width, height);//create spriteSheet object
-        animation = spriteSheet.createAnimation(45, 46, 0.3f);
+        animation = spriteSheet.createAnimation(53, 54, 0.3f);
+        animation2 = spriteSheet.flipAnimation(animation, true, false);
         stateTime = 0f; //initialize stateTime
 
 
@@ -38,6 +40,6 @@ public class Player {
     //update characteristics of character
     public void update(float deltaTime){
         stateTime += deltaTime;
-        position.y += deltaTime;//direction of sprite movement
+        position.x -= deltaTime;//direction of sprite movement
     }
 }

@@ -42,4 +42,14 @@ public class Spritesheet {//class to handle everything to do with spritesheets
 
         return new Animation(animationSpeed, animationFrames);//create new animation
     }
+    public Animation flipAnimation(Animation originalAnimation, boolean flipX, boolean flipY){
+        int frameCount = originalAnimation.getKeyFrames().length;
+        TextureRegion[] flippedFrames = new TextureRegion[frameCount];
+
+        for(int index = 0; index< frameCount; index++){
+            flippedFrames[index] = originalAnimation.getKeyFrames()[index];
+            flippedFrames[index].flip(flipX, flipY);
+        }
+        return new Animation(originalAnimation.getFrameDuration(), flippedFrames);
+    }
 }
