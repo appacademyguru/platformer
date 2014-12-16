@@ -34,7 +34,7 @@ public class Spritesheet {//class to handle everything to do with spritesheets
 
     public Animation createAnimation(int startFrame, int lastFrame, float animationSpeed){//function to animate things
         int counter = (lastFrame + 1) - startFrame;
-        TextureRegion[] animationFrames = new TextureRegion[2];//create new texture region array to store animation frames
+        TextureRegion[] animationFrames = new TextureRegion[counter];//create new texture region array to store animation frames
 
         for(int index = lastFrame; index >= startFrame; index--){
             animationFrames[--counter] = spriteFrames[index];//create the animation frames
@@ -46,8 +46,8 @@ public class Spritesheet {//class to handle everything to do with spritesheets
         int frameCount = originalAnimation.getKeyFrames().length;
         TextureRegion[] flippedFrames = new TextureRegion[frameCount];
 
-        for(int index = 0; index< frameCount; index++){
-            flippedFrames[index] = originalAnimation.getKeyFrames()[index];
+        for(int index = 0; index<= frameCount - 1; index++){
+            flippedFrames[index] = new TextureRegion(originalAnimation.getKeyFrames()[index]);
             flippedFrames[index].flip(flipX, flipY);
         }
         return new Animation(originalAnimation.getFrameDuration(), flippedFrames);
