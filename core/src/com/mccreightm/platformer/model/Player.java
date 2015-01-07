@@ -6,6 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.mccreightm.platformer.view.GameScreen;
 
 import java.sql.Time;
 import java.util.HashMap;
@@ -44,6 +49,21 @@ public class Player {
         animations.put("hurtLeft", spriteSheet.flipAnimation(animations.get("duckRight"), true, false));
         currentAnimation = "duckLeft";
         stateTime = 0f; //initialize stateTime
+
+        BodyDef bodyDefinition = new BodyDef();
+        bodyDefinition.type = BodyDef.BodyType.DynamicBody;
+        bodyDefinition.position.set(position);
+        Body playerBody = GameScreen.gameWorld.createBody(bodyDefinition);//assign the body defs to the player
+        playerBody.setUserData(this);//attach this class to the playerBody
+
+        PolygonShape rectangleShape = new PolygonShape();
+        rectangleShape.setAsBox(width/2f, height/2f, new Vector2(width / 2f, height / 2f), 0f);//defines rectangle
+
+        FixtureDef fixtureDefinition = new FixtureDef();
+        fixtureDefinition.shape = rectangleShape;//makes the shape
+
+        playerBody.createFixture(fixtureDefinition);
+        rectangleShape.dispose();//deletes the shape
     }
     //draw character on screen
     public void draw(Batch spriteBatch){
@@ -53,6 +73,5 @@ public class Player {
     //update characteristics of character
     public void update(float deltaTime){
         stateTime += deltaTime;
-        position.x += deltaTime;//direction of sprite movement
     }
 }

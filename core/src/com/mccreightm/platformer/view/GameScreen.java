@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.mccreightm.platformer.model.Player;
 
 public class GameScreen implements Screen{
@@ -19,12 +22,18 @@ public class GameScreen implements Screen{
     public Batch spriteBatch;
     public Player player;
 
+    public static World gameWorld;
+    private Box2DDebugRenderer debugRenderer;
+
 //constructor
     public GameScreen() {
         //loads map
         map = new TmxMapLoader().load("map/level01.tmx");
         //renders map
         renderer = new OrthogonalTiledMapRenderer(map, 1/70f);
+        gameWorld = new World(new Vector2(0, -9.8f), true);
+        debugRenderer = new Box2DDebugRenderer();
+
         //get the width and height of the window
         float width = Gdx.graphics.getWidth();
         float height = Gdx.graphics.getHeight();
@@ -58,6 +67,8 @@ public class GameScreen implements Screen{
         player.draw(spriteBatch);
         //stop drawing
         spriteBatch.end();
+
+        debugRenderer.render(gameWorld, camera.combined);
     }
 
     @Override
