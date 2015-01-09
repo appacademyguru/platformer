@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.mccreightm.platformer.controller.LevelController;
 import com.mccreightm.platformer.view.GameScreen;
 
 import java.sql.Time;
@@ -20,18 +21,18 @@ public class Player {
     public Spritesheet spriteSheet;
     public String currentAnimation;//animation key
 
-    public int width;
-    public int height;
+    public float width;
+    public float height;
 
     private float stateTime;
     private HashMap<String, Animation> animations;
 
-    public Player() {
+    public Player(int width, int height) {
         //set sprite init position and connect spritesheet
-        position = new Vector2(0,4);
+        position = new Vector2(3,4);
         animations = new HashMap<String, Animation>();
-        width = 70;
-        height = 100;
+        this.width = width * (1/70f);
+        this.height = height * (1/70f);
         spriteSheet = new Spritesheet("img/aliens.png", width, height);//create spriteSheet object
 
         animations.put("walkRight", spriteSheet.createAnimation(53, 54, 0.3f));
@@ -53,11 +54,11 @@ public class Player {
         BodyDef bodyDefinition = new BodyDef();
         bodyDefinition.type = BodyDef.BodyType.DynamicBody;
         bodyDefinition.position.set(position);
-        Body playerBody = GameScreen.gameWorld.createBody(bodyDefinition);//assign the body defs to the player
+        Body playerBody = LevelController.gameWorld.createBody(bodyDefinition);//assign the body defs to the player
         playerBody.setUserData(this);//attach this class to the playerBody
 
         PolygonShape rectangleShape = new PolygonShape();
-        rectangleShape.setAsBox(width/2f, height/2f, new Vector2(width / 2f, height / 2f), 0f);//defines rectangle
+        rectangleShape.setAsBox(this.width/2f, this.height/2f, new Vector2(this.width/2f, this.height/2f), 0f);//defines rectangle
 
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape = rectangleShape;//makes the shape
@@ -68,7 +69,7 @@ public class Player {
     //draw character on screen
     public void draw(Batch spriteBatch){
         //draw sprite on screen
-        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, 70 * (1/70f), 100 * (1/70f));//animate sprite
+        spriteBatch.draw(animations.get(currentAnimation).getKeyFrame(stateTime, true), position.x, position.y, width, height);//animate sprite
     }
     //update characteristics of character
     public void update(float deltaTime){
