@@ -31,8 +31,8 @@ public class Player {
         //set sprite init position and connect spritesheet
         position = new Vector2(3,4);
         animations = new HashMap<String, Animation>();
-        this.width = width * (1/70f);
-        this.height = height * (1/70f);
+        this.width = width * (LevelController.UNIT_SCALE);
+        this.height = height * (LevelController.UNIT_SCALE);
         spriteSheet = new Spritesheet("img/aliens.png", width, height);//create spriteSheet object
 
         animations.put("walkRight", spriteSheet.createAnimation(53, 54, 0.3f));
