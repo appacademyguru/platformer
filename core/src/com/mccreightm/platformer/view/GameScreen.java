@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.mccreightm.platformer.controller.CameraController;
+import com.mccreightm.platformer.controller.EnemyController;
 import com.mccreightm.platformer.controller.LevelController;
 import com.mccreightm.platformer.controller.PlayerController;
 
@@ -14,6 +15,7 @@ public class GameScreen implements Screen{
         CameraController.initializeController();
         LevelController.initializeController();
         PlayerController.initializeController();
+        EnemyController.initializeController();
     }
 //draws stuff on the screen
     @Override
@@ -27,6 +29,7 @@ public class GameScreen implements Screen{
         LevelController.update(delta);
       //character layer
         PlayerController.update(delta);
+        EnemyController.update(delta);
         LevelController.draw();
     }
 

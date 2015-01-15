@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.Array;
 import com.mccreightm.platformer.model.Level;
 import com.mccreightm.platformer.model.Player;
 import com.mccreightm.platformer.model.Sprite;
-import com.sun.xml.internal.ws.client.sei.ResponseBuilder;
 
 public class LevelController {
     public static final float UNIT_SCALE = 1/70f;
@@ -41,6 +40,7 @@ public class LevelController {
         spriteBatch.begin();
         //draw the player on the screen using the spriteBatch object
         PlayerController.player.draw(spriteBatch);
+        EnemyController.enemy.draw(spriteBatch);
         //stop drawing
         spriteBatch.end();
 
