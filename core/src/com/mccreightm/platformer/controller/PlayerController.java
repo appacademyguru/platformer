@@ -26,7 +26,8 @@ public class PlayerController {
             velocity.x = Math.signum(velocity.x) * MAX_VELOCITY;
             player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
         }
-        else if(Math.abs(velocity.y) > MAX_VELOCITY) {
+
+        if(Math.abs(velocity.y) > MAX_VELOCITY) {
             velocity.y = Math.signum(velocity.y) * MAX_VELOCITY;
             player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
         }
@@ -34,13 +35,16 @@ public class PlayerController {
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             player.physicsBody.applyLinearImpulse(VELOCITY, 0, position.x, position.y, true);
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+
+        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0, position.x, position.y, true);
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+
+        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
             player.physicsBody.applyLinearImpulse(0, VELOCITY, position.x, position.y, true);
         }
-        else if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+
+        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
             player.physicsBody.applyLinearImpulse(0, -VELOCITY, position.x, position.y, true);
         }
     }

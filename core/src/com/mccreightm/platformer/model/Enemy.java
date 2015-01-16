@@ -28,7 +28,8 @@ public class Enemy extends Sprite{
             physicsBody.createFixture(fixtureDefinition);
             rectangleShape.dispose();//deletes the shape
             animations.put("idle", spriteSheet.createAnimation(0, 1, 0.3f));
-            currentAnimation = "idle";
+            animations.put("hurt", spriteSheet.createAnimation(2, 3, 0.3f));
+            currentAnimation = "hurt";
         }
         //draw character on screen
         public void draw(Batch spriteBatch){
