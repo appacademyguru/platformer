@@ -8,17 +8,17 @@ import com.mccreightm.platformer.model.Enemy;
 
 public class EnemyController {
         public static Enemy enemy;
-//        private static final float VELOCITY = 1f;
-//        private static final float MAX_VELOCITY = 5f;
+        private static final float VELOCITY = 1f;
+        private static final float MAX_VELOCITY = 5f;
         public static void initializeController(){
             //create new player object
-            enemy = new Enemy(new Vector2(3,7), 51, 58, "img/enemy-barnacle.png");
+            enemy = new Enemy(new Vector2(5,4), 51, 58, "img/enemy-barnacle.png");
         }
         public static void update(float deltaTime){
 //            handleInput();
             enemy.update(deltaTime);
         }
-
+//
 //        private static void handleInput(){
 //            Vector2 velocity = enemy.physicsBody.getLinearVelocity();
 //            Vector2 position = enemy.physicsBody.getPosition();

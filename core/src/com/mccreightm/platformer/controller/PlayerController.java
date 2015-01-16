@@ -26,6 +26,10 @@ public class PlayerController {
             velocity.x = Math.signum(velocity.x) * MAX_VELOCITY;
             player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
         }
+        else if(Math.abs(velocity.y) > MAX_VELOCITY) {
+            velocity.y = Math.signum(velocity.y) * MAX_VELOCITY;
+            player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
+        }
 
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             player.physicsBody.applyLinearImpulse(VELOCITY, 0, position.x, position.y, true);

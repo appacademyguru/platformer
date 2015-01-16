@@ -27,13 +27,12 @@ public class LevelController {
         level = new Level("map/level01.tmx");
         //renders map
         renderer = new OrthogonalTiledMapRenderer(level.map, UNIT_SCALE);
-        gameWorld = new World(new Vector2(0, 0), true);
+        gameWorld = new World(new Vector2(0, -9.8f), true);
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
         //create new spritebatch object: groups sprite sheets and textures so they can be drawn efficiently
         spriteBatch = renderer.getSpriteBatch();
-        PlayerController.initializeController();
     }
     public static void draw(){
         //get ready to begin drawing
