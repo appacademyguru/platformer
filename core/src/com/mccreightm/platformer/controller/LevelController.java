@@ -1,6 +1,8 @@
 package com.mccreightm.platformer.controller;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.mccreightm.platformer.model.Bodies;
 import com.mccreightm.platformer.model.Level;
 import com.mccreightm.platformer.model.Player;
 import com.mccreightm.platformer.model.Sprite;
@@ -33,6 +36,7 @@ public class LevelController {
 
         //create new spritebatch object: groups sprite sheets and textures so they can be drawn efficiently
         spriteBatch = renderer.getSpriteBatch();
+        createLevelBodies();
     }
     public static void draw(){
         //get ready to begin drawing
@@ -63,6 +67,12 @@ public class LevelController {
             if(spriteBody != null){
                 spriteBody.position = body.getPosition();
             }
+        }
+    }
+    private static void createLevelBodies(){
+        MapObjects mapObjects = level.getMapObjects(level.getMapLayer("collision"));
+        for(MapObject mapObject : mapObjects){
+            Bodies.createBody(mapObject);
         }
     }
 
