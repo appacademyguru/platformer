@@ -29,7 +29,7 @@ public class Enemy extends Sprite{
             rectangleShape.dispose();//deletes the shape
             animations.put("idle", spriteSheet.createAnimation(0, 1, 0.3f));
             animations.put("hurt", spriteSheet.createAnimation(2, 3, 0.3f));
-            currentAnimation = "hurt";
+            currentAnimation = "idle";
         }
         //draw character on screen
         public void draw(Batch spriteBatch){

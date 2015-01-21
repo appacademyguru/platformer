@@ -1,6 +1,7 @@
 package com.mccreightm.platformer.model;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -25,6 +26,23 @@ public class Bodies {
             fixtureDefinition.shape = rectangleShape;
             physicsBody.createFixture(fixtureDefinition);
             rectangleShape.dispose();
+        }
+        else if(bodyType.equalsIgnoreCase("slope")){
+            PolygonMapObject polygonObject = (PolygonMapObject)mapObject;
+            BodyDef bodyDefinition = new BodyDef();
+            bodyDefinition.type = BodyDef.BodyType.StaticBody;
+            bodyDefinition.position.set(polygonObject.getPolygon().getX() * LevelController.UNIT_SCALE, polygonObject.getPolygon().getY() * LevelController.UNIT_SCALE);
+            Body physicsBody = LevelController.gameWorld.createBody(bodyDefinition);
+            PolygonShape polygonShape = new PolygonShape();
+            float [] transformedVertices = new float[polygonObject.getPolygon().getVertices().length];
+            for(int index = 0; index < transformedVertices.length; index++){
+                transformedVertices[index] = polygonObject.getPolygon().getVertices()[index] * LevelController.UNIT_SCALE;
+            }
+            polygonShape.set(transformedVertices);
+            FixtureDef fixtureDefinition = new FixtureDef();
+            fixtureDefinition.shape = polygonShape;
+            physicsBody.createFixture(fixtureDefinition);
+            polygonShape.dispose();
         }
     }
 }

@@ -45,5 +45,8 @@
  </layer>
  <objectgroup color="#ec2309" name="collision" width="20" height="10">
   <object name="Ground" type="Solid" x="0" y="682" width="1400" height="18"/>
+  <object name="Ground" type="slope" x="160" y="284">
+   <polygon points="0,0 0,186 208,188"/>
+  </object>
  </objectgroup>
 </map>

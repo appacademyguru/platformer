@@ -15,23 +15,8 @@ public class EnemyController {
             enemy = new Enemy(new Vector2(5,4), 51, 58, "img/enemy-barnacle.png");
         }
         public static void update(float deltaTime){
-//            handleInput();
             enemy.update(deltaTime);
         }
-//
-//        private static void handleInput(){
-//            Vector2 velocity = enemy.physicsBody.getLinearVelocity();
-//            Vector2 position = enemy.physicsBody.getPosition();
-//
-//            if(Math.abs(velocity.x) > MAX_VELOCITY) {
-//                velocity.x = Math.signum(velocity.x) * MAX_VELOCITY;
-//                enemy.physicsBody.setLinearVelocity(velocity.x, velocity.y);
-//            }
-//
-//            if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-//                enemy.physicsBody.applyLinearImpulse(VELOCITY, 0, position.x, position.y, true);
-//            }
-//        }
     }
 
 
