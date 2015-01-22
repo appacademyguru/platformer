@@ -47,6 +47,8 @@ public class LevelController {
         //stop drawing
         spriteBatch.end();
 
+        InputController.draw(spriteBatch);
+
         debugRenderer.render(gameWorld, CameraController.camera.combined);
     }
     public static void update(float deltaTime){
