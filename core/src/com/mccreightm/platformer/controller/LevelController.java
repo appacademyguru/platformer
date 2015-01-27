@@ -39,6 +39,7 @@ public class LevelController {
         createLevelBodies();
     }
     public static void draw(){
+        spriteBatch.setProjectionMatrix(CameraController.camera.combined);
         //get ready to begin drawing
         spriteBatch.begin();
         //draw the player on the screen using the spriteBatch object
@@ -46,7 +47,7 @@ public class LevelController {
         EnemyController.enemy.draw(spriteBatch);
         //stop drawing
         spriteBatch.end();
-
+        spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);
         InputController.draw(spriteBatch);
 
         debugRenderer.render(gameWorld, CameraController.camera.combined);

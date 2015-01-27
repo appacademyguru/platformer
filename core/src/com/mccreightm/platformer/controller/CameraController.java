@@ -5,6 +5,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 
 public class CameraController {
     public static OrthographicCamera camera;
+    public static OrthographicCamera inputCamera;
+
+    public static float widthScale;
+    public static float heightScale;
+
 
     public static void initializeController(){
         //get the width and height of the window
@@ -14,8 +19,13 @@ public class CameraController {
         camera = new OrthographicCamera(14f, 14f * (height / width));
         //sets the camera position to the view width and height divided by two so that the view is aligned to the bottom
         camera.position.set(camera.viewportWidth/2, camera.viewportHeight/2, 0f);
+        /////////////////////////////////////////////////
+        inputCamera = new OrthographicCamera(14f, 14f * (height / width));
+        inputCamera.position.set(inputCamera.viewportWidth / 2f, inputCamera.viewportHeight / 2f, 0);
+        inputCamera.update();
     }
     public static void update(){
+        camera.position.set(PlayerController.player.position.x, PlayerController.player.position.y, 0);
         //sets the camera view and updates it constantly
         camera.update();
     }
@@ -24,5 +34,13 @@ public class CameraController {
         camera.viewportWidth = 14f;
         camera.viewportHeight = 14f * height/width;
         camera.update();
+
+        inputCamera.viewportWidth = 14f;
+        inputCamera.viewportHeight = 14f * height/width;
+        inputCamera.position.set(inputCamera.viewportWidth / 2f, inputCamera.viewportHeight / 2f, 0);
+        inputCamera.update();
+
+        widthScale = width / inputCamera.viewportWidth * LevelController.UNIT_SCALE;
+        heightScale = height / inputCamera.viewportHeight * LevelController.UNIT_SCALE;
     }
 }

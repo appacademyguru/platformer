@@ -8,11 +8,16 @@ import com.mccreightm.platformer.model.Player;
 
 public class PlayerController {
     public static Player player;
+    public static String movementAction;
+    public static String specialAction;
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5f;
+
     public static void initializeController(){
         //create new player object
         player = new Player(new Vector2(3,4), 70, 100, "img/aliens.png");
+        movementAction = "";
+        specialAction = "";
     }
     public static void update(float deltaTime){
         handleInput();
@@ -30,6 +35,13 @@ public class PlayerController {
         if(Math.abs(velocity.y) > MAX_VELOCITY) {
             velocity.y = Math.signum(velocity.y) * MAX_VELOCITY;
             player.physicsBody.setLinearVelocity(velocity.x, velocity.y);
+        }
+
+        if(movementAction.equalsIgnoreCase("right")){
+            player.physicsBody.applyLinearImpulse(VELOCITY, 0f, position.x, position.y, true);
+        }
+        else if(movementAction.equalsIgnoreCase("left")){
+            player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
