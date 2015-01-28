@@ -1,8 +1,5 @@
 package com.mccreightm.platformer.controller;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.mccreightm.platformer.model.Player;
 
@@ -12,6 +9,7 @@ public class PlayerController {
     public static String specialAction;
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5f;
+    private static final float JUMP_VELOCITY = 0.5f;
 
     public static void initializeController(){
         //create new player object
@@ -44,21 +42,25 @@ public class PlayerController {
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
-            player.physicsBody.applyLinearImpulse(VELOCITY, 0, position.x, position.y, true);
+        if(specialAction.equalsIgnoreCase("jump")){
+            player.physicsBody.applyLinearImpulse(0, JUMP_VELOCITY, position.x, position.y, true);
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
-            player.physicsBody.applyLinearImpulse(-VELOCITY, 0, position.x, position.y, true);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
-            player.physicsBody.applyLinearImpulse(0, VELOCITY, position.x, position.y, true);
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
-            player.physicsBody.applyLinearImpulse(0, -VELOCITY, position.x, position.y, true);
-        }
+//        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+//            player.physicsBody.applyLinearImpulse(VELOCITY, 0, position.x, position.y, true);
+//        }
+//
+//        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+//            player.physicsBody.applyLinearImpulse(-VELOCITY, 0, position.x, position.y, true);
+//        }
+//
+//        if(Gdx.input.isKeyPressed(Input.Keys.UP)){
+//            player.physicsBody.applyLinearImpulse(0, VELOCITY, position.x, position.y, true);
+//        }
+//
+//        if(Gdx.input.isKeyPressed(Input.Keys.DOWN)){
+//            player.physicsBody.applyLinearImpulse(0, -VELOCITY, position.x, position.y, true);
+//        }
     }
 }
 

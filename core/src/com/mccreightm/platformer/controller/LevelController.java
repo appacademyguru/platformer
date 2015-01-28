@@ -30,7 +30,7 @@ public class LevelController {
         level = new Level("map/level01.tmx");
         //renders map
         renderer = new OrthogonalTiledMapRenderer(level.map, UNIT_SCALE);
-        gameWorld = new World(new Vector2(0, -9.8f), true);
+        gameWorld = new World(new Vector2(0, -10f), true);
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
