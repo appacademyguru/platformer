@@ -50,9 +50,6 @@
   <object name="ground" type="ground" x="1330" y="140">
    <polyline points="0,0 70,0"/>
   </object>
-  <object name="ground" type="ground" x="0" y="700">
-   <polyline points="0,0 0,-14 20,-40 44,-36 58,-14 68,-8 62,2 144,2 138,-14 160,-38 186,-32 200,-16 234,-40 260,-30 276,-12 276,2 566,2 564,-12 584,-22 594,-44 614,-42 624,2 698,2 700,-144 720,-168 744,-166 766,-152 768,2 984,4 974,-14 1004,-38 1036,-28 1054,-10 1048,2 1066,-24 1066,-68 1014,-72 982,-84 1028,-104 998,-114 1048,-138 1084,-202 1110,-144 1168,-112 1136,-102 1176,-80 1134,-68 1098,-66 1096,-26 1112,4 1200,2 1190,-12 1210,-40 1234,-32 1254,-12 1258,-2 1256,4 1334,2 1336,-18 1348,-18 1364,-48 1386,-46 1394,-2 1398,0"/>
-  </object>
   <object name="ground" type="ground" x="142" y="534">
    <polyline points="0,0 70,0"/>
   </object>
@@ -107,5 +104,12 @@
   <object name="ground" type="ground" x="210" y="70">
    <polyline points="0,0 70,0"/>
   </object>
+  <object name="ground" type="ground" x="0" y="700">
+   <polyline points="0,0 1400,0"/>
+  </object>
+ </objectgroup>
+ <objectgroup name="blocks" width="20" height="10">
+  <object name="block" type="block" x="350" y="630" width="70" height="70"/>
+  <object name="block" type="block" x="350" y="560" width="70" height="70"/>
  </objectgroup>
 </map>

@@ -59,6 +59,7 @@ public class InputController {
 
             @Override
             public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                screenY = Gdx.graphics.getHeight() - screenY;
                 for(InputControl inputControl : inputControls) {
                     if (inputControl.getBoundingBox().contains(screenX,screenY)){
                         if(inputControl.action.equalsIgnoreCase("right")) {

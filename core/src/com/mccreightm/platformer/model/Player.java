@@ -19,12 +19,14 @@ public class Player extends Sprite{
 
         physicsBody = LevelController.gameWorld.createBody(bodyDefinition);//assign the body defs to the player
         physicsBody.setUserData(this);//attach this class to the playerBody
+        physicsBody.setFixedRotation(true);
 
         PolygonShape rectangleShape = new PolygonShape();
         rectangleShape.setAsBox(this.width/2f, this.height/2f, new Vector2(this.width/2f, this.height/2f), 0f);//defines rectangle
 
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape = rectangleShape;//makes the shape
+        fixtureDefinition.density = 3f;
 
         physicsBody.createFixture(fixtureDefinition);
         rectangleShape.dispose();//deletes the shape

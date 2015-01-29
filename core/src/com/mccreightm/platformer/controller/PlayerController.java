@@ -9,7 +9,7 @@ public class PlayerController {
     public static String specialAction;
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5f;
-    private static final float JUMP_VELOCITY = 0.5f;
+    private static final float JUMP_VELOCITY = 1f;
 
     public static void initializeController(){
         //create new player object
