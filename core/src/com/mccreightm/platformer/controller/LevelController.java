@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mccreightm.platformer.model.Bodies;
+import com.mccreightm.platformer.model.CollisionListener;
 import com.mccreightm.platformer.model.Level;
 import com.mccreightm.platformer.model.Player;
 import com.mccreightm.platformer.model.Sprite;
@@ -31,6 +32,7 @@ public class LevelController {
         //renders map
         renderer = new OrthogonalTiledMapRenderer(level.map, UNIT_SCALE);
         gameWorld = new World(new Vector2(0, -10f), true);
+        gameWorld.setContactListener(new CollisionListener());
         worldBodies = new Array<Body>();
         debugRenderer = new Box2DDebugRenderer();
 
