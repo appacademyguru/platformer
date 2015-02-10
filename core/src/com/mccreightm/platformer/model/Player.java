@@ -29,7 +29,7 @@ public class Player extends Sprite{
 
         FixtureDef fixtureDefinition = new FixtureDef();
         fixtureDefinition.shape = rectangleShape;//makes the shape
-        fixtureDefinition.density = 3f;
+        fixtureDefinition.density = 0.5f;
 
         FixtureDef fixtureDefinitionSensor = new FixtureDef();
         fixtureDefinitionSensor.shape = sensorShape;
@@ -53,7 +53,7 @@ public class Player extends Sprite{
         animations.put("duckLeft", spriteSheet.flipAnimation(animations.get("duckRight"), true, false));
         animations.put("hurtRight", spriteSheet.createAnimation(48, 48, 0.3f));
         animations.put("hurtLeft", spriteSheet.flipAnimation(animations.get("duckRight"), true, false));
-        currentAnimation = "duckLeft";
+        currentAnimation = "idleLeft";
 
     }
     //draw character on screen

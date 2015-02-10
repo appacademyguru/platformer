@@ -20,6 +20,7 @@ public class Sprite {
 
     private float stateTime;
     protected HashMap<String, Animation> animations;
+    public String direction;
 
     public Sprite(Vector2 position, int width, int height, String sheetPath){
         //set sprite init position and connect spritesheet
@@ -29,6 +30,7 @@ public class Sprite {
         this.height = height * (LevelController.UNIT_SCALE);
         spriteSheet = new Spritesheet(sheetPath, width, height);//create spriteSheet object
         stateTime = 0f; //initialize stateTime
+        direction = "right";
     }
 
     public void draw(Batch spriteBatch){

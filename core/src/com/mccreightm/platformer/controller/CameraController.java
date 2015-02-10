@@ -2,6 +2,7 @@ package com.mccreightm.platformer.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 
 public class CameraController {
     public static OrthographicCamera camera;
@@ -25,7 +26,9 @@ public class CameraController {
         inputCamera.update();
     }
     public static void update(){
-        camera.position.set(PlayerController.player.position.x, PlayerController.player.position.y, 0);
+        float positionY = MathUtils.clamp(PlayerController.player.position.y, inputCamera.viewportHeight / 2f, inputCamera.viewportHeight / 2f);
+        float positionX = MathUtils.clamp(PlayerController.player.position.x, inputCamera.viewportWidth / 2f, inputCamera.viewportWidth);
+        camera.position.set(positionX, positionY, 0);
         //sets the camera view and updates it constantly
         camera.update();
     }
@@ -33,6 +36,7 @@ public class CameraController {
         //modify window size to maintain aspect ratio
         camera.viewportWidth = 14f;
         camera.viewportHeight = 14f * height/width;
+
         camera.update();
 
         inputCamera.viewportWidth = 14f;
