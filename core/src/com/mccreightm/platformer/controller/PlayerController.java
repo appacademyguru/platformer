@@ -17,7 +17,7 @@ public class PlayerController {
 
     private static final float VELOCITY = 1f;
     private static final float MAX_VELOCITY = 5f;
-    private static final float JUMP_VELOCITY = 12f;
+    private static final float JUMP_VELOCITY = 8f;
 
     public static void initializeController(){
         //create new player object

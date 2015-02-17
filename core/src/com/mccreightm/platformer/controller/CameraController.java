@@ -36,7 +36,7 @@ public class CameraController {
         //modify window size to maintain aspect ratio
         camera.viewportWidth = 14f;
         camera.viewportHeight = 14f * height/width;
-
+    
         camera.update();
 
         inputCamera.viewportWidth = 14f;
