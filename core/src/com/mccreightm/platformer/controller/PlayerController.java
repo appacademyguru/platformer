@@ -60,16 +60,19 @@ public class PlayerController {
         if(movementAction.equalsIgnoreCase("right")){
             player.physicsBody.applyLinearImpulse(VELOCITY, 0f, position.x, position.y, true);
             player.direction = "right";
+//            MusicController.play("walk");
         }
         else if(movementAction.equalsIgnoreCase("left")){
             player.physicsBody.applyLinearImpulse(-VELOCITY, 0f, position.x, position.y, true);
             player.direction = "left";
+//            MusicController.play("walk");
         }
 
         if(specialAction.equalsIgnoreCase("jump") && grounded) {
-                player.physicsBody.applyLinearImpulse(0, JUMP_VELOCITY, position.x, position.y, true);
-                player.direction = "jump";
-                grounded = false;
+            player.physicsBody.applyLinearImpulse(0, JUMP_VELOCITY, position.x, position.y, true);
+            player.direction = "jump";
+            grounded = false;
+            MusicController.play("jump");
         }
 
     }

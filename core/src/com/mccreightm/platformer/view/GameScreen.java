@@ -7,12 +7,14 @@ import com.mccreightm.platformer.controller.CameraController;
 import com.mccreightm.platformer.controller.EnemyController;
 import com.mccreightm.platformer.controller.InputController;
 import com.mccreightm.platformer.controller.LevelController;
+import com.mccreightm.platformer.controller.MusicController;
 import com.mccreightm.platformer.controller.PlayerController;
 
 public class GameScreen implements Screen{
 
 //constructor
     public GameScreen() {
+        MusicController.initializeMusicController();
         CameraController.initializeController();
         LevelController.initializeController();
         PlayerController.initializeController();

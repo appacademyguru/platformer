@@ -1,5 +1,6 @@
 package com.mccreightm.platformer.controller;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.mccreightm.platformer.model.Block;
 import com.mccreightm.platformer.model.Bodies;
 import com.mccreightm.platformer.model.CollisionListener;
 import com.mccreightm.platformer.model.Level;
@@ -26,6 +28,7 @@ public class LevelController {
     public static World gameWorld;
     private static Array<Body> worldBodies;
     private static Box2DDebugRenderer debugRenderer;
+    public static Array<Sprite> worldSprites;
 
     public static void initializeController(){
         level = new Level("map/level01.tmx");
@@ -34,11 +37,13 @@ public class LevelController {
         gameWorld = new World(new Vector2(0, -9.8f), true);
         gameWorld.setContactListener(new CollisionListener());
         worldBodies = new Array<Body>();
+        worldSprites = new Array<Sprite>();
         debugRenderer = new Box2DDebugRenderer();
 
         //create new spritebatch object: groups sprite sheets and textures so they can be drawn efficiently
         spriteBatch = renderer.getSpriteBatch();
         createLevelBodies();
+        MusicController.play("music");
     }
     public static void draw(){
         spriteBatch.setProjectionMatrix(CameraController.camera.combined);
@@ -47,6 +52,11 @@ public class LevelController {
         //draw the player on the screen using the spriteBatch object
         PlayerController.player.draw(spriteBatch);
         EnemyController.enemy.draw(spriteBatch);
+
+        for(Sprite sprite : worldSprites){
+            sprite.draw(spriteBatch);
+        }
+
         //stop drawing
         spriteBatch.end();
         spriteBatch.setProjectionMatrix(CameraController.inputCamera.combined);

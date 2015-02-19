@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.utils.Array;
 import com.mccreightm.platformer.controller.LevelController;
 
 public class Bodies {
@@ -50,10 +51,23 @@ public class Bodies {
         else if(bodyType.equalsIgnoreCase("block")){
             RectangleMapObject rectangleObject = (RectangleMapObject)mapObject;
             BodyDef bodyDefinition = new BodyDef();
-            bodyDefinition.type = BodyDef.BodyType.StaticBody;
+            bodyDefinition.type = BodyDef.BodyType.DynamicBody;
             bodyDefinition.position.set(rectangleObject.getRectangle().x * LevelController.UNIT_SCALE, rectangleObject.getRectangle().y * LevelController.UNIT_SCALE);
             Block block = new Block(bodyDefinition.position, 70, 70, "img/background-tiles.png");
-            block.physicsBody.setUserData(block);
+            LevelController.worldSprites.add(block);
+            Body physicsBody = LevelController.gameWorld.createBody(bodyDefinition);//assign the body defs to the player
+            physicsBody.setUserData(block);//attach this class to the block
+
+            PolygonShape rectangleShape = new PolygonShape();
+            rectangleShape.setAsBox(block.width/2f, block.height/2f, new Vector2(block.width/2f, block.height/2f), 0f);//defines rectangle
+
+            FixtureDef fixtureDefinition = new FixtureDef();
+            fixtureDefinition.shape = rectangleShape;//makes the shape
+
+            physicsBody.createFixture(fixtureDefinition);
+            rectangleShape.dispose();//deletes the shape
+
+
         }
     }
 }
